@@ -1,0 +1,114 @@
+<style type="text/css">
+p.ui_header { padding-left: 30px; }
+p.header { border: 1px solid #CCC; }
+span.list { font-size: 0.9em; display: block; }
+a:hover { text-decoration: underline; }
+div.chkopts { float: left; width: 32%; }
+div.filters { float: left; width: 25%;}
+.filter-labels { margin-right: 20px; font-size: 0.9em; }
+.italics { font-style: italic; margin-top:3px; }
+label.italics { font-size: 0.9em; }
+div.optionsbox { border: 1px solid #CCC; overflow: hidden; padding: 5px 10px; }
+div.filter-group { padding-bottom: 20px; overflow: hidden; }
+div.filter-group p { font-style: italic; font-weight: bold; margin-bottom: 0px; }
+p.bold { font-weight: bold; }
+p.italics { margin-bottom: 0px; }
+label { float left; width: 100%;}
+input { width: 95%; }
+.marginb { margin-bottom: 10px;}
+</style>
+
+
+<h1>{head_data}{go_back}</h1>
+<ul id="tabs" class="idTabs" style="display:block;">
+<li><a href="{website_ref}?p=checklist-manager&t={type}" {checklist-manager}>Checklist</a></li><li><a href="{website_ref}?p=checklist-manager&t={type}&o=rapidlook" {rapidlook}>RapidLook</a></li>
+</ul>
+{error}{success}
+{fhead}
+<p style="display:{check_details}; font-weight:bold;">Summary</p>
+
+<!--rapidlook!-->
+<div class="filter-group" style="display:{rlblock};"><p>Status Filters (check to enable)</p>
+    {statusfilter}
+</div>
+<div class="clear"></div>
+<div class="filter-group" style="display:{rlblockmachines};"><p>Machine Filters (check to enable)</p>
+    {machinefilter}
+</div>
+<div class="clear"></div>
+<!--Rapidlook-->
+
+<p>{checklists}</p>
+<div style="display: {system-block};">
+<p>{m_sel}</p>
+</div>
+<div id="faultlist" style="display:{check_list};">
+{out}
+</div>
+<div style="display:{check_details};">
+<p>{reported_by}</p>
+<p>{reported_date}</p>
+{reported_machine}
+<p>{unit}</p>
+<p>{category}</p>
+<p>{status}</p>
+<p style="font-weight:bold;">Details</p>
+{responses}<br />
+<ul id="tabs" class="idTabs" style="display:block;">
+<li><a href="#">Resolution Details</a></li>
+</ul>
+<p>Resolution details can be entered by anyone. Please ensure all data is accurate before submitting.</p>
+<p>{subject}</p>
+{prev_comments}
+<p>{comments}</p>
+{files}<br />
+<p style="font-weight:bold;">Additional Resolution Details</p>
+<p>{file}</p>
+<p>{upd-details}</p>
+
+<br />
+<ul id="tabs" class="idTabs" style="display:block;">
+	<li><a href="#">Related checklist report</a></li>
+</ul>
+<p>{relatedfaultsopts}</p>
+<p>{relatedfaultsubmit}</p>
+<p>{relatedfaults}</p>
+</div>
+{fend}
+
+<script type="text/javascript" src="{website_loc}_scripts/jquery.datepicker-time.js"></script>
+
+<script type="text/javascript">
+$(function(){
+  $('#faults').bind('change', function () {
+	  var url = $(this).val(); 
+	  if (url) { window.location = url; }
+	  return false;
+  });
+});
+	
+$(document).ready(function() { 
+	$("#rapidlook").tablesorter();
+});
+
+$(function() { {dates} });
+
+{times}
+
+
+var accItem = document.getElementsByClassName('accordionItem');
+    var accHD = document.getElementsByClassName('accordionItemHeading');
+    for (i = 0; i < accHD.length; i++) {
+        accHD[i].addEventListener('click', toggleItem, false);
+    }
+    function toggleItem() {
+        var itemClass = this.parentNode.className;
+        for (i = 0; i < accItem.length; i++) {
+            accItem[i].className = 'accordionItem close';
+        }
+        if (itemClass == 'accordionItem close') {
+            this.parentNode.className = 'accordionItem open';
+        }
+	}
+	
+</script>

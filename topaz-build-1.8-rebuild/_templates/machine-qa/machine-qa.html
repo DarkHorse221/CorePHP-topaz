@@ -1,0 +1,35 @@
+<style type="text/css">
+.cols_mach_qa { float: left; width: 30%; height: auto; }
+.error { border: 1px solid #FF0000; }
+em { position:absolute;}
+</style>
+<h1>{head_data}{go_back}</h1>
+<ul id="tabs" class="idTabs" style="display:block;">
+<li><a href="{sel-id}" {report-sel}>Report QA</a></li><li><a href="{sel-id-details}" {details-sel}>RapidLook</a></li>
+</ul>
+{fhead}
+<div class="validate-box"></div>
+{success}{warning}{error}
+{qa_checklist_data}
+<div class="clear"></div>
+{comments}
+{signoff}
+{fend}
+<script type="text/javascript">
+{editor}
+</script>
+<script type="text/javascript">$("ul#tabs").idTabs();</script>
+<script type="text/javascript">
+$(document).ready(function() { 
+	$("#qa-forms").tablesorter();
+	$("#qa-forms-details").tablesorter();
+});
+
+$("#machine-qa" ).validate({
+	errorPlacement: function(error,element) { return true;	}, /*Turns of the error messages*/
+	invalidHandler: true, /*Allows the submit to occur even when invalid*/
+   rules: { /*applies the rules*/
+		{rules}
+  }
+});
+</script>

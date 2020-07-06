@@ -1,0 +1,44 @@
+# enable expirations
+ExpiresActive On
+ExpiresByType image/gif A2592000
+ExpiresByType image/jpeg A2592000
+ExpiresByType image/jpg A2592000
+ExpiresByType image/png A2592000
+ExpiresByType text/html M604800
+ExpiresByType text/css M604800
+
+#default character set
+AddDefaultCharset utf-8
+
+RewriteEngine On
+RewriteRule ^(console)($|/) - [L]
+RewriteRule ^(_uploads)/(files)/(_references)/(.*)?$ /handler.php?lvl1=$4 [L,NC]
+RewriteRule ^(_uploads)/(files)/(.*)?$ /handler.uploads.php?lvl1=$3 [L,NC]
+RewriteRule ^([-A-Za-z0-9]+)/?$ /index.php?p=$1 [L,NC]
+
+Options -Indexes
+
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascripts
+
+AddType application/vnd.ms-word.document.macroEnabled.12 .docm
+AddType application/vnd.openxmlformats-officedocument.wordprocessingml.document docx
+AddType application/vnd.openxmlformats-officedocument.wordprocessingml.template dotx
+AddType application/vnd.ms-powerpoint.template.macroEnabled.12 potm
+AddType application/vnd.openxmlformats-officedocument.presentationml.template potx
+AddType application/vnd.ms-powerpoint.addin.macroEnabled.12 ppam
+AddType application/vnd.ms-powerpoint.slideshow.macroEnabled.12 ppsm
+AddType application/vnd.openxmlformats-officedocument.presentationml.slideshow ppsx
+AddType application/vnd.ms-powerpoint.presentation.macroEnabled.12 pptm
+AddType application/vnd.openxmlformats-officedocument.presentationml.presentation pptx
+AddType application/vnd.ms-excel.addin.macroEnabled.12 xlam
+AddType application/vnd.ms-excel.sheet.binary.macroEnabled.12 xlsb
+AddType application/vnd.ms-excel.sheet.macroEnabled.12 xlsm
+AddType application/vnd.openxmlformats-officedocument.spreadsheetml.sheet xlsx
+AddType application/vnd.ms-excel.template.macroEnabled.12 xltm
+AddType application/vnd.openxmlformats-officedocument.spreadsheetml.template xltx

@@ -1,0 +1,58 @@
+{error}
+<div style="display:{document}">
+<p class="breadcrumb">{breadcrumb}</p>
+<div id="doc-lt">{pdf-icon}</div>
+<div id="doc-rt">
+	<p class="block"><label class="doc_label">Document:</label>{name}</p>
+	<p class="block"><label class="doc_label">Document No:</label>{docno}</p>
+	<p class="block"><label class="doc_label">Author:</label>{auth}</p>
+	<p class="block"><label class="doc_label">Reviewer:</label>{rev}</p>
+	<p class="block"><label class="doc_label">Approver:</label>{appr}</p>
+	<p class="block"><label class="doc_label">Implement Date:</label>{imp_date}</p>
+	<p class="block"><label class="doc_label">Review Date:</label>{rev_date}</p>
+	<p class="block"><label class="doc_label">Version:</label>{ver}</p>
+	<p class="block"><label class="doc_label">Standards References:</label>{std}</p>
+	<p class="block"><label class="doc_label">File Link:</label>{pdf}</p>
+	<p class="block"><label class="doc_label">File Size:</label>{size}</p>
+	<p>&nbsp;</p>
+	<ul id="tabs" class="idTabs" style="display:block; width:645px;"> 
+	  <li><a href="#reldoc">Related Documents</a></li>
+	  <li><a href="#doclinks">Document Links</a></li>
+	  <li><a href="#history">Document History</a></li>
+      <li><a href="#readrequest" {readrequest-select}>Read Acknowledgement</a></li> 
+      <li><a href="#feedback" {feedback-select}>Feedback</a></li>
+	</ul> 
+	
+	<div id="reldoc">
+	{reldocs}
+	</div>
+	<div id="doclinks">
+	{doclinks}
+	</div>
+	<div id="history">
+	{history}
+	</div>
+    <div id="readrequest" style="width:645px;">
+	{fhead-rr}
+	{success}{error-tabs}
+	<p>If you have been requested to acknowledge reading this document, please complete the sign off below.</p><p>
+    <strong>Please note:</strong> by completing the sign off below, you are acknowledging that you have read the complete document and have a thorough understanding of its contents.</p>
+	<fieldset><legend>Sign off</legend><p>{uname-rr}</p><p>{pass-rr}</p></fieldset>
+	<p>{submit-feedback-rr}</p>
+	{fend-rr}
+	</div>
+    <div id="feedback">
+	{fhead}
+	{success}{error-tabs-ff}
+	<p>To provide feedback or suggested updates to this document. Please fill in the form below.</p>
+	<p>{feedback}</p>
+	<fieldset><legend>Sign off</legend><p>{uname}</p><p>{pass}</p></fieldset>
+	<p>{submit-feedback}</p>
+	{fend}
+	</div>
+</div>
+</div>
+<script type="text/javascript">$("ul#tabs").idTabs();</script>
+<script type="text/javascript">//<![CDATA[
+CKEDITOR.replace( 'text', { toolbar : 'Limited', height: 140 });
+//]]></script> 

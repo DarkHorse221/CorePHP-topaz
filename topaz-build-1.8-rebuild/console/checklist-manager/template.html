@@ -1,0 +1,153 @@
+<style type="text/css">
+#group-lt,#group-lt-add-check-list,#group-lt-edit-check-list { float: left; width: auto; } #group-rt, #group-rt-add-check-list,#group-rt-edit-check-list { float: left; width: auto; margin: 0px 0px 0px 40px; } .std-grp { width: auto; display: table-cell; padding-right: 30px; }
+#mids-add{ min-height:auto; background-color: #FFF; padding: 20px; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px; border: 1px solid #CCC;}
+label.chk { display: block; width: 200px; float: left; margin: 0; padding: 0; }
+
+.clear { clear: both; display: block;}
+.content { width: 1200px; margin: 10px auto 10px auto;	line-height: 170%;padding-bottom: 15px; }
+.row, .row-alt { border: 1px solid #ccc; background: #E6F9FF; width: 700px; padding: 20px 10px 0px 10px; margin-bottom: 10px; }
+input[type=text], input[type=select], select {	padding: 4px;margin-bottom: 2px;}
+/*input[type^=ra]input[type$=io]input[type*=d]*/
+.btn, .btn_add { font-size: 11px;font-weight: bold;color: #FFF;background-color: #000;padding-top: 5px;padding-right: 15px;padding-bottom: 5px;padding-left: 15px;border-top-style: none; border-right-style: none;border-bottom-style: none;border-left-style: none;	-webkit-border-radius: 3px;	-moz-border-radius: 3px;border-radius: 3px;	margin: 0 1px; }
+.btn_add { color: #000;background-color: #AEDD27;border: 1px solid #84A71B;}
+input.btn:hover, .btn_add:hover { cursor: pointer; }
+.btn:hover {cursor: pointer;color: #FFF;text-decoration: none;}
+a.btn {	color:#FFF;} a.btn:hover {color:#FFF;text-decoration: none;}
+
+</style>
+<!------------------TOPAZ FORM BUILDER!------------------>
+	<style type="text/css">
+		.buttons { padding: 5px; margin: 10px 0px; background-color: #FFFAB0; }
+		.remove_field, .remove_field_options { margin-left: 10px; }
+		.move { float: left; background-color: #FFF; padding: 4px 5px; margin-right: 10px; border: 1px solid #CCC; }
+		.textarea { height: 50px; }
+		.options { padding: 5px 0px; margin-left: 30px; }
+		.add_options { margin: 10px 0px 10px 180px; }
+		#simple-post { margin: 0px 0px 20px 30px; }
+		#form-builder p { line-height: 30px; }
+	</style>
+<!------------------TOPAZ FORM BUILDER!------------------>	
+<div id="profile"><div class="profile_header">Check List Manager{sect_head_ext}</div>{sect_head_rt}</div>
+<div id="section">{section_nav}</div>
+<div class="errors">{success}</div>
+{warning}{error}
+<div id="profile-content" style="display: {system-rights}">
+	
+	<div id="group-lt-add-check-list" style="display: {add-check-list}">
+	{fhead-add-check}
+	<p class="header">Enter in the following details to add a new Check List</p><br />
+	<p>{name}</p>
+	<p>{chk-add-type}</p>
+	<p>{chk-add-unit}</p>
+	<p>{act}</p>
+	<p>{submit-add-check-list}</p>
+	</div>
+	<!--
+	<div id="group-rt-add-check-list" style="display: {add-check-list}">
+	
+	</div>
+	!-->
+	{fend-add-check}
+	<div class="clear"></div>
+	
+	{fhead-edit-check}
+	<div id="group-lt-edit-check-list" style="display: {edit-check-list}">
+	<p class="header">Edit the following details to update the Check List</p><br />
+	<p>{name}</p>
+	<p>{chk-edit-type}</p>
+	<p>{chk-edit-unit}</p>
+	<p>{chk-edit-version}{chk-edit-vers}{curr_ver_id}</p>
+	<p>{chk-edit-status-pub}{chk-edit-pubs}</p>
+	<p>{act}</p>
+	<p>{submit-edit-check-list}</p>
+	<p>{feedback-link}</p>
+	</div>
+	
+	<div id="group-rt-edit-check-list" style="display: {edit-check-list}">
+	<p class="header">Select an associated machine(s) if required</p><br />
+	<div id="mids-add">{mids}</div></br />
+	<p class="header">Groups who receive notifications (<a href="{url}">Modify</a>)</p><br />
+	<p>{notification-groups}</p><br />
+	<p class="header">Individuals who receive notifications</p><br />
+	<p>{individual-list} <input type="button" onclick="addUser();" value="Add" class="submit"></p>
+	<p>{notification-individuals}</p>
+	</div>
+	
+	{fend-edit-check}
+	<div class="clear" style="width:1000px"></div>
+	
+	<div style="display: {edit-questions}">
+		
+
+<!------------------TOPAZ FORM BUILDER!------------------>
+	<form method="post" id="ajaxform" action="{website-loc}console/checklist-manager/ajax-form-submit.php"   >
+	<p class="header">Build Check List question list</p>
+	<p>Enter labels for each field type in the spaces provided. For Options, enter in as many options as required in the spaces provided.</p>
+	
+	<div id="form-builder">
+		<div id="simple-msg" class="simple-msg"></div>
+		<div id="move-buttons" class="input_fields_wrap">
+		<span style="display: {form-builder-display};"><button class="add_field_button">Single Line</button> <button class="add_field_button_textbox">Multiple Line</button> <button class="add_field_button_datetime">Date & Time</button> <button class="add_field_button_date">Date</button> <button class="add_field_button_time">Time</button> <button class="add_field_button_options">Options</button> <button class="add_button_upload">Upload</button> <button class="add_field_button_feedback">Feedback</button> <button class="add_field_section_break">Section Header</button> 
+		<input type="button"  id="simple-post" value="Submit Form Builder" class="submit" /></span>
+		{qlist}
+		</div>
+	</div>
+	</form>
+	<!------------------TOPAZ FORM BUILDER!------------------>
+	
+	</div>
+	
+	<div style="display: {edit-resolution}">
+		<!------------------TOPAZ FORM BUILDER!------------------>
+
+	<form method="post" id="ajaxform1" action="{website-loc}console/checklist-manager/ajax-resolution-form-submit.php"   >
+	<p class="header">Build resolution question list</p>
+	<p>Enter labels for each field type in the spaces provided. For Options, enter in as many options as required in the spaces provided.</p>
+	
+	<div id="form-builder">
+		<div id="simple-msg1" class="simple-msg"></div>
+		<div id="move-buttons1" class="input_fields_wrap">
+		<span style="display: {form-builder-display};"><button class="add_field_button">Single Line</button> <button class="add_field_button_textbox">Multiple Line</button> <button class="add_field_button_datetime">Date & Time</button> <button class="add_field_button_date">Date</button> <button class="add_field_button_time">Time</button> <button class="add_field_button_options">Options</button> <button class="add_button_upload">Upload</button> <button class="add_field_button_feedback">Feedback</button> <button class="add_field_section_break">Section Header</button> <input type="button"  id="simple-post1" value="Submit Form Builder" class="submit" /></span>
+		{qlist}
+		</div>
+	</div>
+	</form>
+	<!------------------TOPAZ FORM BUILDER!------------------>
+	
+	</div>
+	
+	
+	<div style="display: {check-list}">
+
+		<label class="switch" style="display: {check-list}">
+			<p class="switch-text">Show Active / All</p>
+			<input type="checkbox" id="activetoggle" onclick="updatePreference(this);" {checked}>
+			<span class="slider"></span>
+		</label>
+	{fl_data}
+	</div>
+	
+</div>
+</div>
+
+<script type="text/javascript">var START_X_VAL = '{initial_count}';</script>
+<script src="{website-loc}console/_scripts/topaz-form-builder.js"></script>
+<script type="text/javascript">
+$(document).ready(function() { 
+	$("#check_list").tablesorter();
+});
+function updatePreference(cb) {
+		if (cb.checked) {
+			window.location.href = '{checkedurl}';
+		} else {
+			
+			window.location.href = '{checkedurlfalse}';
+		}
+	}
+
+	function addUser() {
+		var e = document.getElementById("individual_list");
+		var result = e.options[e.selectedIndex].value;
+		window.location.href = '{addurl}' + '&addun=' + result;
+	}
+</script>

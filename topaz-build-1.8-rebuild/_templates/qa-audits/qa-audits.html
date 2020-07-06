@@ -1,0 +1,30 @@
+<style type="text/css">
+.audit-row { background-color: #E6F7FF; overflow:auto; }
+.audit-row-alt { background-color: none; overflow:auto; }
+label { font-size: 0.9em; }
+label.question { width: 500px; padding-top: 8px; padding-bottom: 5px; }
+div.question { font-size: 0.9em; width: 450px; display:block; float: left; font-style: italic; padding-top: 8px; padding-bottom: 5px; }
+.answer { float:right; text-align:left; font-size: 0.9em; padding-top: 5px; padding-bottom: 5px; }
+.radio { width: 65px; display:inline-table; }
+</style>
+<h1>{head_data}{go_back}</h1>
+<ul id="tabs" class="idTabs" style="display:block;">
+<li><a href="{sel-id}" {report-sel}>Report QA</a></li><li><a href="{sel-id-details}" {details-sel}>RapidLook</a></li>
+</ul>
+{fhead}
+{success}{warning}{error}
+{qa_checklist_data}
+<div class="clear"></div>
+{comments}
+{signoff}
+{fend}
+<script type="text/javascript">
+{editor}
+</script>
+<script type="text/javascript">$("ul#tabs").idTabs();</script>
+<script type="text/javascript">
+$(document).ready(function() { 
+	$("#qa-forms").tablesorter();
+	$("#qa-forms-details").tablesorter();
+});
+</script>

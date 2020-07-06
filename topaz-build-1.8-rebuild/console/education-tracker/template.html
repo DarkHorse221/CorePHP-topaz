@@ -1,0 +1,231 @@
+<script type="text/javascript" src="{website_loc}console/_scripts/jQuery-datepicker-time.js"></script>
+<script type="text/javascript">
+$(function() {
+	{date_functions}
+});
+
+$(document).ready(function() { $("#ins").tablesorter(); });
+$(document).ready(function() { $("#crs").tablesorter(); });
+$(document).ready(function() { $("#conf").tablesorter(); });
+$(document).ready(function() { 
+	$("#groups").tablesorter({
+		headers: { 2: {sorter: false }, 3: { sorter: false } }
+	}); 
+});
+$(document).ready(function() {
+	$("#list").sortable({
+		handle : '.header',
+		update : function () {
+		var order = $('#list').sortable('serialize');
+		$("#info").load("../_functions/process-edutrk-sld-ord.php?"+order);
+		}
+		
+	});
+});
+</script>
+<style type="text/css">
+#group-lt, #group-lt-addc, #group-lt-addconf, #group-lt-editconf, #group-lt-editc, #group-lt-addi, #group-lt-editi { float: left; width: auto; }
+#group-rt, #group-rt-addc, #group-rt-addconf, #group-rt-editconf, #group-rt-editc, #group-rt-addi, #group-rt-editi { float: left; width: auto; margin: 0px 0px 0px 40px; }
+.std-grp { width: auto; display: table-cell; padding-right: 20px; }
+#slidingDiv{ height:auto; background-color: #FFF; padding: 20px; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px; border: 1px solid #CCC; }
+.q-num-del { display: block; float: right; width:auto;}
+.q-num { display: block; float: left; width:auto;} .q-num { font-weight: bold; } 
+#list {	list-style: none; }
+#list li { display: block; padding: 0px 0px; margin-bottom: 10px; background-color: #FFF; border: 1px solid #999; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px; }
+#list div.header { background: #FFD064;  height: 20px; line-height: 20px; padding: 5px 10px; cursor: move;
+}
+#list div.header a:hover { color: #FFF; }
+#list div.content { padding: 5px 10px; }
+#list div.header a.q-header { color: #FFF; } #list div.header a.q-header:hover { color: #000; }
+
+.clear { clear: both; display: block;}
+.content { width: 1200px; margin: 10px auto 10px auto;	line-height: 170%;padding-bottom: 15px; }
+.row, .row-alt { border: 1px solid #ccc; background: #E6F9FF; width: 700px; padding: 20px 10px 0px 10px; margin-bottom: 10px; }
+input[type=text], input[type=select], select {	padding: 4px;margin-bottom: 2px;}
+/*input[type^=ra]input[type$=io]input[type*=d]*/
+.btn, .btn_add { font-size: 11px;font-weight: bold;color: #FFF;background-color: #000;padding-top: 5px;padding-right: 15px;padding-bottom: 5px;padding-left: 15px;border-top-style: none; border-right-style: none;border-bottom-style: none;border-left-style: none;	-webkit-border-radius: 3px;	-moz-border-radius: 3px;border-radius: 3px;	margin: 0 1px; }
+.btn_add { color: #000;background-color: #AEDD27;border: 1px solid #84A71B;}
+input.btn:hover, .btn_add:hover { cursor: pointer; }
+.btn:hover {cursor: pointer;color: #FFF;text-decoration: none;}
+a.btn {	color:#FFF;}
+a.btn:hover {color:#FFF;text-decoration: none;}
+.text_black_bold, .text_correct {color: #666; font-size: 12px; font-weight: bold; width: 400px; display:block; float:left;} .text_correct { width: 100px; }
+#divTxt { display: block; width:auto; overflow:hidden; }
+#divTxt label {	/*width: auto;*/ width: 80px; font-weight: bold; padding-top: 6px; font-size: 12px; }
+#divTxt input { width:370px; } #divTxt input.chk { width:20px; margin-left: 15px; }
+.col_label, .col_input_type, .col_input_name{float: left;width:400px;color: red;/*border: 1px solid red;*/ margin: 0px 5px 10px 0px; }
+.col_input_type  {width: 150px;} 
+.col_process {float: left;	width: 100px;}
+.col_remove {float: left;width: 20px;padding-top: 5px;}
+.col_spacer {float: left;width: 56px;}
+.col_extra_values {	float: left;width: 600px;margin: 0px 0px 20px 80px;}
+.col_extra_values_yn, .col_extra_values_tf { float: left;width: 200px;margin: 0px 0px 20px 80px;}
+.clear_inputs {	clear: both;display: block;	height: 5px;width: 100%;}
+label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+input.error, select.error, textarea.error {	border: 2px solid red;}		
+.validate_checkbox_oneormore {/*width: 200px;*/	float:left;}
+.error_checkbox {color: red; padding-left: .5em;  border: 2px solid red;}
+.addparticipants { display:inline-block; float:right; margin-right: 10px; }
+.multiple-select-ha { margin-left: 47px; min-width: 270px;}
+.multiple-select-a { margin-left: 50px; min-width: 300px;}
+.disabled { background-color: #DCDCDC;}
+
+</style>
+<div id="profile"><div class="profile_header">{sect_head}{sect_head_ext}</div>{sect_head_rt}</div>
+<div id="section">{section_nav}</div>
+<div class="report"></div>
+<div class="errors">{success}</div>
+{warning}{error}{info}
+<div id="info"></div>
+<div id="profile-content" style="display: {system-rights}">
+
+<div style="display: {ins}">
+{pagination}
+{ins_data}
+</div>
+
+<div style="display: {conf}">
+{pagination}
+{conf_data}
+</div>
+
+<div id="group-lt-addi" style="display: {ins-add}">
+{fhead-ins-add}
+<p class="header">Enter in the following details to add an In-Service</p><br />
+<p>{a-name}</p>
+<p>{a-credits}</p>
+<p>{ins-event-type}</p>
+<p>{a-mandatory}</p><br />
+</div>
+<div id="group-rt-addi" style="display: {ins-add}">
+<p class="header">Attach groups (default is all unless selected below)</p><br />
+<div id="slidingDiv">{a-groups}</div><br />
+</div>
+<div class="clear" style="display: {ins-add};width:1150px;">&nbsp;</div>
+<div style="display: {ins-add}">
+<br /><p class="header">Add a brief description describing the In-Service</p>
+<p>{desc-add}</p><br />
+<p class="header">Add a date for the In-Service (more dates can be added once submitted)</p>
+{dates-add}
+<p>{submit-ins-add}</p>
+{fend-ins-add}
+</div>
+
+<div id="group-lt-addconf" style="display: {conf-add}">
+{fhead-conf-add}
+<p class="header">Enter in the following details to add a Conference/Event</p><br />
+<p>{conf-name}</p>
+<p>{conf-loc}</p>
+<p>{conf-start}</p>
+<p>{conf-end}</p>
+<p>{conf-attachment}</p>
+</div>
+<div id="group-rt-addconf" style="display: {conf-add}">
+<p class="header">Attach groups (default is all unless selected below)</p><br />
+<div id="slidingDiv">{conf-groups}</div>
+</div>
+<div class="clear" style="display: {conf-add};width:1150px;">&nbsp;</div>
+<div style="display: {conf-add}">
+<br /><p class="header">Add a brief description describing the conference</p>
+<p>{conf-desc-add}</p><br />
+<p>{submit-conf-add}</p>
+{fend-conf-add}
+</div>
+
+<div id="group-lt-editconf" style="display: {conf-edit}">
+{fhead-conf-edit}
+<p class="header">Enter in the following details to add a Conference/Event</p><br />
+<p>{conf-e-name}</p>
+<p>{conf-e-loc}</p>
+<p>{conf-e-start}</p>
+<p>{conf-e-end}</p>
+<p>{conf-edit-attachment}</p>
+{current-attachment}
+<p>{conf-participants}</p>
+</div>
+<div id="group-rt-editconf" style="display: {conf-edit}">
+<p class="header">Attach groups (default is all unless selected below)</p><br />
+<div id="slidingDiv">{conf-e-groups}</div>
+
+</div>
+<div class="clear" style="display: {conf-edit};width:1150px;">&nbsp;</div>
+<div style="display: {conf-edit}">
+<br /><p class="header">Update brief description describing the conference</p>
+<p>{conf-desc-edit}</p><br />
+<p>{submit-conf-edit}</p>
+{fend-conf-edit}
+</div>
+
+<div id="group-lt-editi" style="display: {ins-edit}">
+{fhead-ins-edit}
+<p class="header">Enter in the following details to update the In-Service</p><br />
+<p>{name}</p>
+<p>{credits}</p>
+<p>{ins-edit-event-type}</p>
+<p>{mandatory}</p>
+<p>{participants}</p>
+</div>
+<div id="group-rt-editi" style="display: {ins-edit}">
+<p class="header">Attached groups (default is all unless selected below)</p><br />
+<div id="slidingDiv">{groups}</div><br />
+</div>
+<div class="clear" style="display: {ins-edit};width:1150px;">&nbsp;</div>
+<div style="display: {ins-edit}">
+<br /><p class="header">Add a brief description describing the In-Service</p>
+<p>{desc}</p><br />
+<p class="header">Add/Update dates for the In-Service (more dates can be added after update)</p>
+{dates}
+<p>{submit-ins-edit}</p>
+{fend-ins-edit}
+</div>
+
+<div style="display: {ins-edit-participants}">
+{participant-list}
+</div>
+
+<div style="display: {ins-add-participants}">
+	{fhead-managers}
+	<p class="header">Adding Attendees/Participants to {eventname}</p><br />
+	<p>Note: Once Add Participants has been selected, Attendees/Participants can not be removed.</p>
+	<p class="multiple-select-h">List of Staff</p>
+	<p class="switch-h">&nbsp;</p>
+	<p class="multiple-select-h">Attendees/Participants</p>
+	<p class="multiple-select-h multiple-select-ha">Recorded Attendees/Participants</p>
+	<div class="clear"></div>
+	<p class="multiple-select">{lom}</p>
+	<p class="switcher"><a href="#" id="add" class="text-submit">Add >></a><br /><br /><br /><a href="#" id="remove" class="text-submit"><< Remove</a></p>
+	<p  class="multiple-select">{sm}</p>
+	<p  class="multiple-select multiple-select-a">{attendees-list}</p>
+	<div class="clear"></div>
+	<p>{submit-managers}</p>
+	{fend-managers}
+</div>
+
+<div style="display: {ins-conf-participants}">
+{conf-participant-list}
+</div>
+
+<div class="clear"></div>
+</div>
+<script type="text/javascript">//<![CDATA[
+CKEDITOR.replace( 'conf-desc-add', { toolbar : 'User', height: 80 });
+CKEDITOR.replace( 'desc-add', { toolbar : 'User', height: 80 });
+CKEDITOR.replace( 'desc', { toolbar : 'User', height: 80 });
+CKEDITOR.replace( 'conf-desc-edit', { toolbar : 'User', height: 80 });
+//]]></script>
+<script type="text/javascript">
+	var INITIAL_COUNT = '{initial_count}';
+	
+	function selectAllOptions(selStr) {
+		var selObj = document.getElementById(selStr);
+		for (var i=0; i<selObj.options.length; i++) { selObj.options[i].selected = true; }
+	}
+	$().ready(function() {  
+		$('#add').click(function() {  
+			return !$('#lom option:selected').remove().appendTo('#sm');  
+		});
+		$('#remove').click(function() {
+			return !$('#sm option:selected').remove().appendTo('#lom');
+		});  
+	}); 	
+</script>

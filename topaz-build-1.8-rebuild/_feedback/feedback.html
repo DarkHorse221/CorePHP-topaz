@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Feedback</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <script src="../_scripts/lib/jquery-3.5.1.min.js"></script>
+        <script src="js/uikit.min.js"></script>
+		<script src="js/uikit-icons.min.js"></script>
+		<script src="js/gsap.min.js"></script>
+    </head>
+    <body>
+<style type="text/css">
+html,
+body {
+		background-color: #00aac7;
+		min-height: 100vh;
+}
+
+.center-div {
+	text-align: center;
+}
+
+.header {
+	color: #FFF;
+}
+.questions {
+	width: 90vw;
+}
+.home-button {
+  margin-top: 30px;
+}
+/* HIDE RADIO */
+[type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+[type=radio] + img {
+  cursor: pointer;
+  padding: 10px;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + img {
+  
+  background: #008096;
+  border-radius: 25px;
+}
+</style>
+
+<div class="uk-container uk-position-center" style="display: {home-display};">
+	<div class="uk-text-center questions" uk-grid>
+    <div class="uk-width-1-1">
+      <h1 class="header">We would love to hear your feedback!</h1>
+      <img id="home-image" src="_images/feedback-home.png">
+		</div>
+  </div>
+  <div class="uk-width-1-1 uk-text-center home-button">
+    <button id="home-button" class="uk-button uk-button-primary uk-width-1-3 button">Leave feedback</button>
+  </div>
+</div>
+
+
+<div class="uk-container uk-position-center" style="display: {question-display};">
+	<div class="uk-text-center questions" uk-grid>
+		<div class="uk-width-1-1" id="questions">
+			<div class="question-header">
+        {error}
+				<h1 class="header">{question}</h1>
+			</div>
+			{question-answer}
+		</div>
+
+		<div class="uk-width-1-1">
+			<button id="button" class="uk-button uk-button-primary uk-width-1-3 button">Next</button>
+		</div>
+	</div>
+</div>
+
+
+<div class="uk-container uk-position-center" style="display: {thankyou-display};">
+	<div class="uk-text-center questions" uk-grid>
+    <div class="uk-width-1-1">
+      <h1 class="header">Thank you for your feedback!</h1>
+		</div>
+  </div>
+</div>
+
+
+<script>
+const $button = document.querySelector('#button');
+const $hbutton = document.querySelector('#home-button');
+const $ques = document.querySelector('.question-answer');
+var fid = '{fid}';
+var qid = '{qid}';
+var currqid = '{curr_ques_id}';
+var total = '{total}';
+rid = '{respid}';
+var thankyou = '{thankyou}';
+targeturl = 'feedback.php?fid=' + fid + '&qid=' + qid + '&total=' + total + '&thankyou=' + thankyou + '&respid=' + rid;
+const $homeurl = 'feedback.php?fid=' + fid;
+const $timer = '20000';
+
+//set the variable for the timer
+var timer = new Timer(function() {
+	//once timer reached return to homeUrl
+    window.location.replace($homeurl);
+}, $timer);
+
+//using gasp to manage transitions
+//transition in effects
+gsap.timeline()
+    .from (".question-header", {  opacity: 0, scale: 0, duration: 0.9, ease: "back" })
+    .from (".button", { opacity: 0, scale: 0, duration: 0.3, ease: "back" }, "<0.2")
+    .from (".question-answer img", { opacity: 0, scale: 0, stagger: 0.1, duration: 0.1, ease: "back" })
+
+//for transition out effects
+let tltransition = new TimelineMax({paused:true})
+.to (".question-answer", { opacity: 0, scale: 0, duration: 0.5, ease: "back" })
+.to (".button", {  opacity: 0, scale: 0, duration: 0.2, ease: "back" })
+.to (".question-header", {  opacity: 0, scale: 0, duration: 0.7, ease: "back" }, "<")
+//after the transition out is complete reload the page
+.call(addResponse)
+.call(reloadPage)
+
+//for transition out effects
+let tlhtransition = new TimelineMax({paused:true})
+.to ("#home-button", {  opacity: 0, scale: 0, duration: 0.2, ease: "back" })
+.to (".header", {  opacity: 0, scale: 0, duration: 0.7, ease: "back" }, "<")
+.to ("#home-image", {  opacity: 0, scale: 0, duration: 0.7, ease: "back" }, "<")
+//after the transition out is complete reload the page
+.call(reloadPage)
+
+//on question button press do transition out
+$button.addEventListener('click', () => {
+    tltransition.play(0);
+});
+
+//on home button press do transition out
+$hbutton.addEventListener('click', () => {
+    tlhtransition.play(0);
+});
+
+
+function addResponse() {
+  //check if faces is checked and then get element
+   if($('.faces').is(':checked')) { 
+    var response = document.querySelector('input[name="faces"]:checked').value;
+    $.post("feedback-response.php",
+    {
+      fid: fid,
+      currqid: currqid,
+      response: response,
+      respid: rid
+    },
+    function(result){
+      //alert(result);
+      rid = result;
+      targeturl = 'feedback.php?fid=' + fid + '&qid=' + qid + '&total=' + total + '&thankyou=' + thankyou + '&respid=' + rid;
+      //targeturl = targeturl + '&respid=' + result;
+      window.location.replace(targeturl);
+    });
+    
+   };
+   
+}
+
+//replace the page url with the new url on next
+function reloadPage() {
+    window.location.replace(targeturl);
+}
+//reset the timer on click event
+$ques.addEventListener('click', () => {
+	timer.reset($timer);
+	timer.stop();
+	timer.start();
+});
+
+// start the timer on body load
+document.body.onload = timer.start();;
+
+// timer function
+function Timer(fn, t) {
+    var timerObj = setInterval(fn, t);
+
+    this.stop = function() {
+        if (timerObj) {
+            clearInterval(timerObj);
+            timerObj = null;
+        }
+        return this;
+    }
+
+    // start timer using current settings (if it's not already running)
+    this.start = function() {
+        if (!timerObj) {
+            this.stop();
+            timerObj = setInterval(fn, t);
+        }
+        return this;
+    }
+
+    // start with new or original interval, stop current interval
+    this.reset = function(newT = t) {
+        t = newT;
+        return this.stop().start();
+    }
+}
+</script>
+</body>
+</html>

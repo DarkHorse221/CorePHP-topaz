@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<title>{title}</title>
+<link id="page_favicon" href="{website_loc}favicon.ico" rel="icon" type="image/x-icon" />
+<link type="text/css" href="{website_loc}_css/styles.css" rel="stylesheet" />	
+<link type="text/css" href="{website_loc}_css/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
+<link type="text/css" href="{website_loc}_css/tablesorter.css" rel="stylesheet" />
+<link type="text/css" href="{website_loc}_css/lightbox.css" rel="stylesheet" />	
+
+<script type="text/javascript" src="{website_scripts}lib/jquery-3.5.1.min.js"></script>	
+<script type="text/javascript" src="{website_scripts}lib/jquery-ui-1.12.1.min.js"></script>
+<script type="text/javascript" src="{website_scripts}jquery.tablesorter.js"></script>
+<script type="text/javascript" src="{website_scripts}tabs.js"></script>
+<script type="text/javascript" src="{website_scripts}jqueryFileTree.js"></script>
+<script type="text/javascript" src="{website_loc}_scripts/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="{website_scripts}error-fader.js"></script>
+<script type="text/javascript" src="{website_scripts}jquery.validate.min.js"></script>
+<script type="text/javascript" src="{website_scripts}lightbox.js"></script>
+<script type="text/javascript">var MEDIA_URL = '{website_loc}';</script>
+<script type="text/javascript">
+	$().ready(function() {
+		$('#lt-box-tree').fileTree({ root: '1', script: MEDIA_URL+'_functions/jqueryFileTreeltbox.php?&sid={sid}', folderEvent: 'click', expandSpeed: 750, collapseSpeed: 750, multiFolder: false });	
+	});
+	
+$(function(){
+  $('#unit-selector').bind('change', function () {
+	  var url = $(this).val(); 
+	  if (url) { window.location = '?unit=' + url; }
+	  return false;
+  });
+});
+
+</script>
+</head>
+<body {tap-and-learn}>
+{demo_mode}
+<div id="navigation" {force-logins}>{nav}</div>
+<div id="container">
+<div id="lt" {force-logins}>
+<div class="lt-box-header">Quick Links</div>
+<div class="lt-box">
+{login}
+{search}</div>
+<div class="lt-box-header">Categories</div>
+<div class="lt-box"><div id="lt-box-tree"></div></div>
+</div>
+<div id="rt">

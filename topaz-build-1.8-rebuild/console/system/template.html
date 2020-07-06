@@ -1,0 +1,87 @@
+<style type="text/css">
+.phpinfodisplay { display:block; width:auto; }
+input.color { width: 100px; }
+.link { margin-left: 10px; }
+.delete { margin-left: 10px; width: 20px; display: inline-block; }
+.cred,.color { margin-left: 10px; }
+</style>
+<div id="profile"><div class="profile_header">{sect_head}{sect_head_ext}</div>{sect_head_rt}</div>
+<div id="section">{section_nav}</div>
+<div class="errors">{success}</div>
+{warning}{error}
+<div id="profile-content" style="display: {system-rights}">
+
+
+<div style="display: {information}">
+<p class="header">Current system settings</p><br />
+<p>{system-version}</p>
+<p>{product-license}</p>
+<p>{php-version} <span style="margin-left:10px;"><a href="#" onClick="javascript:load()">View PHP info</a></span></p>
+<p>{mysql-version}</p>
+<br />
+</div>
+
+<div style="display: {settings}">
+{fhead}
+<p class="header">Update system settings</p><br />
+<p>{site-act}</p>
+<p>{display-rows}</p>
+<p>{display-rows-launch}</p>
+<p>{page-limit}</p>
+<p>{search-rows}</p>
+<p>{time-out-delay}</p>
+<p>{days-for-cpe-recording}</p><br />
+<p>{exc-list}</p><br />
+<p>{doc-no}</p><br />
+<p>{force-logon}</p>
+<p>{debug}</p>
+<p>{debug-form}</p><br />
+<p>{submit-system}</p>
+{fend}
+</div>
+
+<div style="display: {email-templates}">
+<p class="header">Select an email template to edit</p>
+{email-templates-data}
+</div>
+
+{fhead-edit-email-templates}
+<div style="display: {edit-email-templates}">
+<p class="header">Edit the email template below</p><br />
+<p>{edit-email-templates-name}</p>
+<textarea name="template" class="textarea" id="editor">{edit-email-templates-text}</textarea>
+<p>{edit-email-templates-submit}</p>
+</div>
+{fend-edit-email-templates}
+
+<div style="display: {typelists}">
+{fhead-types}
+<p class="header">Select Type List to Manage</p>
+<p>{types-selector}</p><br />
+<p class="header" style="display: {typelists-sel}">Add new {types-description}</p><br />
+<p style="display: {typelists-sel}">{add-types-inp} {add-custom} {add-types-submit} {max-licence}</p><br />
+<p class="header" style="display: {typelists-sel}">Update/Delete {types-description} (Delete icon will only display when safe to delete)</p><br />
+{types}
+{update-types-submit}
+{fend-types}
+</div>
+
+
+</div>
+<script type="text/javascript" src="{website-loc}jscolor/jscolor.js"></script>
+<script type="text/javascript">
+function load() {
+var load = window.open('{phpinfo}','','scrollbars=yes,menubar=yes,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
+}
+
+$(function(){
+  $('.sel_typ').bind('change', function () {
+	  var url = $(this).val(); 
+	  if (url) { window.location = url; }
+	  return false;
+  });
+});
+
+CKEDITOR.replace( 'editor', { toolbar : 'Full', height: 500 });
+
+</script>

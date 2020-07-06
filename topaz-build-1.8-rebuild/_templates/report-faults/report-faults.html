@@ -1,0 +1,73 @@
+<style type="text/css">
+p.ui_header { padding-left: 30px; }
+p.header { border: 1px solid #CCC; }
+span.list { font-size: 0.9em; display: block; }
+a:hover { text-decoration: underline; }
+div.chkopts { float: left; width: 32%; }
+div.filters { float: left; width: 25%;}
+.filter-labels { margin-right: 20px; font-size: 0.9em; }
+.italics { font-style: italic; margin-top:3px; }
+label.italics { font-size: 0.9em; }
+div.optionsbox { border: 1px solid #CCC; overflow: hidden; padding: 5px 10px; }
+div.filter-group { padding-bottom: 20px; overflow: hidden; }
+div.filter-group p { font-style: italic; font-weight: bold; margin-bottom: 0px; }
+p.bold { font-weight: bold; }
+p.italics { margin-bottom: 0px; }
+label { float left; width: 100%;}
+input { width: 95%; }
+</style>
+
+<h1>Report Faults{go_back}</h1>
+<ul id="tabs" class="idTabs" style="display:block;">
+<li><a href="{website_ref}?p=report-faults" {report-faults}>Report Faults</a></li><li><a href="{website_ref}?p=report-faults&o=rapidlook" {rapidlook}>RapidLook</a></li>
+</ul>
+{error}
+{fhead}
+<p style="display:{fault_details}; font-weight:bold;">Summary</p>
+<p>{faults}</p>
+<div style="display: {system-block};">
+<p>{m_sel}</p>
+</div>
+<div id="faultlist" style="display:{fault_list};">
+{out}
+</div>
+<div style="display:{fault_details};">
+<p>{reported_by}</p>
+<p>{reported_date}</p>
+<p>{status}</p><br />
+<p style="font-weight:bold;">Details</p>
+{responses}<br />
+<ul id="tabs" class="idTabs" style="display:block;">
+<li><a href="#">Resolution Details</a></li>
+</ul>
+<p>Resolution details can be entered by anyone. Please ensure all data is accurate before submitting.</p>
+{prev_comments}
+<p>{comments}</p>
+{files}<br />
+<p style="font-weight:bold;">Additional Resolution Details</p>
+<p>{file}</p>
+<p>{upd-details}</p>
+</div>
+{fend}
+
+<script type="text/javascript" src="{website_loc}_scripts/jquery.datepicker-time.js"></script>
+
+<script type="text/javascript">
+$(function(){
+  $('#faults').bind('change', function () {
+	  var url = $(this).val(); 
+	  if (url) { window.location = url; }
+	  return false;
+  });
+});
+	
+
+
+$(document).ready(function() { 
+	$("#rapidlook").tablesorter();
+});
+
+$(function() { {dates} });
+
+{times}
+</script>

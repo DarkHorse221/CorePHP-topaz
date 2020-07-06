@@ -1,0 +1,1 @@
+$(document).ready(function(){ setTimeout(function(){ $("div.errors").fadeOut("slow", function () { $("div.errors").remove(); }); }, 5000); });

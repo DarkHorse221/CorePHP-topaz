@@ -1,0 +1,112 @@
+<script src="{website_loc}console/_scripts/showHide.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+	$("#date-imp").datepicker({ dateFormat: 'yy-mm-dd',	defaultDate: "{date-imp}", showButtonPanel: true });
+	$("#date-rev").datepicker({ dateFormat: 'yy-mm-dd',	defaultDate: "{date-rev}", showButtonPanel: true });
+});
+$(document).ready(function() { $("#history").tablesorter(); });
+$(document).ready(function(){
+   $('.show_hide').showHide({ speed: 500, easing: '', changeText: 1, showText: 'View Standards', hideText: 'Close Standards' });
+});
+</script>
+<style type="text/css">
+#group-lt { float: left; width: auto; } #group-rt { float: left; width: auto; margin: 0px 0px 0px 40px; }
+.std-grp { width: auto; display: table-cell; padding: 5px 20px 5px 5px; }
+.shadow { border: 1px solid #999; background: #C0E7FA; }
+#slidingDiv{ min-height:300px; background-color: #FFF; padding: 20px; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px; border: 1px solid #CCC; display:none;}
+</style>
+
+<div id="profile"><div class="profile_header">{sect_head}{sect_head_ext}</div>{sect_head_rt}</div>
+<div id="section">{section_nav}</div>
+<div class="errors">{success}</div>
+{warning}{error}
+<div id="profile-content" style="display: {system-rights}; overflow:hidden;">
+
+
+<div style="display: {document-edit}" id="group-lt">
+{fhead-doc}
+<p class="header">Enter in the following details to update the document</p><br />
+<p>{name}</p>
+<p>{doc-link}</p>
+<p>{doc_no}{doc_no_h}</p>
+<p>{author}</p>
+<p>{reviewer}</p>
+<p>{approver}</p>
+<p>{doc_type}</p>
+<p>{pdf}</p>
+<p style="clear:left;">{doc}</p>
+<p>{version}{version_h}</p>
+<p><label class="label">Implement Date</label><input type="text" id="date-imp" name="date-imp" value="{date-imp}" class="date" /></p>
+<p style="display: {rev-hidden}"><label class="label">Revision Date</label><input type="text" id="date-rev" name="date-rev" value="{date-rev}" class="date" /></p>
+<p><label class="label">No Revision Date</label>{no_rev_date}</p>
+<p>{unit}</p>
+<p>{act}</p>
+<p>{submit-doc}</p>
+</div>
+
+<div id="group-rt" style="display: {document-edit}">
+<p class="header">Accreditation Standards <a href="{website_loc}_uploads/files/NSQHS-Standards-Sept-2012.pdf" target="_blank">(help)</a></p>
+<a href="#" class="show_hide" rel="#slidingDiv">View standards</a>
+<div id="slidingDiv">{standards}</div>
+<br /><br />
+<p class="header">Document Change Summary (enter changes when updating documents)</p><br />
+{changes}
+<br />
+<p class="header">Document Notifications</p><br />
+{notification}
+</div>
+
+<div class="clear" style="width:1150px;">&nbsp;</div>
+
+<div style="display: {document-edit};">
+{text}
+{fend-doc}
+</div>
+
+<div style="display: {related-documents}">
+{fhead-rel-docs}
+<p class="header">Search for the document that is related to this document and assign it</p><br />
+<p>{related-docs}</p>
+<p>{submit-rel-docs}</p>
+{fend-rel-docs}
+<br />
+<p class="header">Assigned Related Documents</p>
+<p>{rel-docs-list}</p>
+</div>
+
+<div style="display: {document-reads}">
+{doc-reads}
+</div>
+
+<div style="display: {document-links}">
+{fhead-links}
+<p class="header">Add document links below</p><br />
+<p>{link-name}</p>
+<p>{link-src}</p>
+<p>{link-add}</p>
+{fend-links}
+<p class="header">Assigned document links</p><br />
+{links}
+</div>
+
+<div style="display: {document-history}">
+{pagination}
+{history}
+</div>
+
+<div style="display: {privatise}">
+{fhead-privatise}
+<p class="header">Assign groups to privatise access to folder/document</p><br />
+{private}
+<br />
+<p>{submit-private}</p>
+{fend-privatise}
+</div>
+
+<div class="clear"></div>
+</div>
+<script type="text/javascript">//<![CDATA[
+CKEDITOR.replace( 'changes', { toolbar : 'User', height: 140 });
+CKEDITOR.replace( 'text', { toolbar : 'Full', height: 500 });
+//]]>
+</script> 

@@ -1,0 +1,84 @@
+<div id="profile">
+  <div class="profile_header">User Manager{sect_head_ext}</div>
+  {sect_head_rt}
+</div>
+<div id="section">{section_nav}</div>
+<div class="errors">{success}</div>
+{warning}{error}
+<div id="profile-content" style="display: {system-rights}">
+  <div style="display: {users}">
+    <label class="switch" style="display: {users}">
+      <p class="switch-text">Show Active / All</p>
+      <input
+        type="checkbox"
+        id="activetoggle"
+        onclick="updatePreference(this);"
+        {checked}
+      />
+      <span class="slider"></span>
+    </label>
+    {pagination}
+    <p>{user_data}</p>
+  </div>
+  <div style="display: {groups}">
+    {pagination}
+    <p>{grp_data}</p>
+  </div>
+  <div style="display: {rights}">
+    {fhead-rights}
+    <p>{rights_data}</p>
+    <p>{submit-rights}</p>
+    {fend-rights}
+  </div>
+
+  <div style="display: {add-user}">
+    {fhead-user}
+    <p class="header">Enter in the following details to register a new user</p>
+    <br />
+    <p>{fn}</p>
+    <p>{ln}</p>
+    <p>{usr}</p>
+    <p>{e}</p>
+    <p>{title}</p>
+    <p>{pass1}</p>
+    <p>{pass2}</p>
+    <p>{unit}</p>
+    <p>{ph}</p>
+    <p>{mob}</p>
+    <p>{act}</p>
+    <p>{submit-user}</p>
+    {fend-user}
+  </div>
+
+  <div style="display: {add-group}">
+    {fhead-grp}
+    <p class="header">
+      Enter in the following details to create a new user group
+    </p>
+    <br />
+    <p>{group-name}</p>
+    <p>{group-type}</p>
+    <p>{submit-grp}</p>
+    {fend-grp}
+  </div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+	  $("#users").tablesorter({
+		headers: { 3: { sorter: false }, 4: { sorter: false } },
+	  });
+	});
+	$(document).ready(function () {
+	  $("#groups").tablesorter({
+		headers: { 2: { sorter: false }, 3: { sorter: false } },
+	  });
+	});
+	function updatePreference(cb) {
+		if (cb.checked) {
+			window.location.href = '{checkedurl}';
+		} else {
+			
+			window.location.href = '{checkedurlfalse}';
+		}
+	}
+  </script>

@@ -1,0 +1,74 @@
+<style type="text/css">
+.dialog_warnings .ui-dialog-titlebar { background: {dialog_bg}; }
+.expired { color:#FF0000; }
+#match-lt { float: left; width: auto; } 
+.std-grp { width: auto; display: table-cell; padding-right: 20px; height: auto; overflow: hidden;}
+</style>
+
+<h1>User Profile</h1>
+<ul id="tabs" class="idTabs" style="display:{d_nav}"> 
+{nav}
+</ul>
+{success}
+{error}{warning}
+{fhead}
+{nav-tabs}
+{fend}
+{dialog-warnings}
+<script type="text/javascript">
+function selectAllOptions(selStr) {
+  var selObj = document.getElementById(selStr);
+  for (var i=0; i<selObj.options.length; i++) { selObj.options[i].selected = true; }
+}
+$().ready(function() {  
+ 	$('#add').click(function() {  return !$('#lom option:selected').remove().appendTo('#sm');  });
+	$('#remove').click(function() { return !$('#sm option:selected').remove().appendTo('#lom'); });  
+});
+
+$(function() {
+	function runEffect() {
+	  $( "#add-personal-credentials" ).show('highlight', '', 500);
+	};
+
+	$( "#button" ).click(function() {
+	  runEffect();
+	  return false;
+	});
+
+	$( "#add-personal-credentials" ).hide();
+});
+
+$("input[name='cancel']").click( function(){
+	 $("#add-personal-credentials").hide()
+});
+
+$("#add-credentials").validate({
+	errorElement: "em",
+	submitHandler: function(form) {
+		form.submit();
+	}
+});
+
+
+$(function() { {dates} });
+//<![CDATA[
+{ck}
+//]]>
+
+
+$(function() {
+    $( "#dialog-message" ).dialog({
+	  dialogClass:'dialog_warnings',
+	  minWidth: 600,
+      modal: true,
+	  draggable: false,
+      buttons: {
+        Acknowledge: function() {
+          $( this ).dialog( "close" );
+		  $.post("{website_loc}_functions/update-session-data.php", { id: "{uid}", value: "1" } );
+		  
+        }
+      }
+    });
+  });
+</script>

@@ -1,0 +1,45 @@
+<script type="text/javascript">
+$(document).ready(function() { 
+	$("#view-users").tablesorter({
+		headers: { 3: {sorter: false }, 4: {sorter: false } }
+	}); 
+});
+</script>
+<div id="profile"><div class="profile_header">{sect_head}{sect_head_ext}</div>{sect_head_rt}</div>
+<div id="section">{section_nav}</div>
+<div class="errors">{success}</div>
+{warning}{error}
+<div id="profile-content" style="display: {system-rights}">
+
+<div style="display: {group}">
+{fhead-grp}
+<p class="header">Enter in the following details to update the user group</p><br />
+<p>{group-id}</p>
+<p>{group-name}</p>
+<p>{group-page}</p>
+<p>{submit-grp}</p>
+{fend-grp}
+</div>
+
+<div style="display: {view-user-groups}">
+<p>{users-in-group}</p>
+</div>
+
+<div style="display: {view-group-credentials}">
+<p class="header">{cred_header}</p><br />
+{fhead-cred}
+{credentials}
+<p>{submit-cred}</p>
+{fend-cred}
+
+</div>
+
+<div style="display: {view-add-credentials}">
+<p class="header">Add a new credential to the list</p><br />
+{fhead-add-group}
+<p>{add-group}</p>
+<p>{submit-add-group}</p>
+{fend-add-group}
+</div>
+
+</div>

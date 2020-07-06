@@ -1,0 +1,30 @@
+<script type="text/javascript">
+$(function() {
+	$("#date-single").datepicker({ dateFormat: 'yy-mm-dd',	defaultDate: "{date-single}", showButtonPanel: true });
+});
+$(document).ready(function() { 
+	$("#radiation").tablesorter(); 
+});
+</script>
+<div id="profile"><div class="profile_header">{sect_head}{sect_head_ext}</div>{sect_head_rt}</div>
+<div id="section">{section_nav}</div>
+<div class="errors">{success}</div>
+{warning}{error}
+<div id="profile-content" style="display: {system-rights}">
+
+<div style="display: {view-radiation}">
+<p class="header">Last available record for active users</p>
+{view-radiation-data}
+</div>
+
+<div style="display: {add-radiation}">
+{fhead}
+<p class="header">Enter in the following details to add radiation doses</p>
+{select-user}
+<p><label class="label">Report Date</label><input type="text" id="date-single" name="date-single" value="{date-single}" class="date" /></p>
+<p>{dose}</p>
+<p>{submit-radiation}</p>
+{fend}
+</div>
+
+</div>

@@ -1,0 +1,79 @@
+<style type="text/css">
+.std-grp { width: auto; display: table-cell; padding-right: 20px; }
+</style>
+<div id="profile"><div class="profile_header">Reports{sect_head_ext}</div>{sect_head_rt}</div>
+<div id="section">{section_nav}</div>
+<div class="errors">{success}</div>
+{warning}{error}
+<div id="profile-content" style="display: {system-rights}">
+<div style="display: {reports}"><p>{reports_data}</p></div>
+
+<div style="display: {view-report}">
+<p class="header">By executing the report, a report will be generated for download</p><br />
+<p>{execute}</p><br />
+<p class="header">View report execution history</p>
+{history}
+</div>
+{fhead}
+<div style="display: {view-configure}">
+	<label class="switch" style="display: {view-configure-data}">
+		<p class="switch-text">Show Active / All</p>
+		<input
+		  type="checkbox"
+		  id="activetoggle"
+		  onclick="updatePreference(this);"
+		  {checked}
+		/>
+		<span class="slider"></span>
+	  </label>
+	  <p class="clear"  style="display: {view-configure-data}"></p>
+<p class="header">Configure/Select Report Data</p>
+<p>{checklists}</p>
+{data-fields}
+<p>{execute} {execute-audit}</p>
+</div>
+{fend}
+
+</div>
+<script type="text/javascript">
+$(document).ready(function() { 
+	$("#reports").tablesorter();
+	$("#report-history").tablesorter();
+	$("#data-list").tablesorter();
+});
+
+$(function(){
+  $('#chklist_sel').bind('change', function () {
+	  var url = $(this).val(); 
+	  if (url) { window.location = url; }
+	  return false;
+  });
+});
+
+$(function(){
+  $('#chklist_ver').bind('change', function () {
+	  var url = $(this).val(); 
+	  if (url) { window.location = url; }
+	  return false;
+  });
+});
+
+$(function() {
+	{dates}
+});
+
+$('#version').bind('change', function () {
+	  var url = $(this).val(); 
+	  if (url) { window.location = url; }
+	  return false;
+  });
+
+  function updatePreference(cb) {
+		if (cb.checked) {
+			window.location.href = '{checkedurl}';
+		} else {
+			
+			window.location.href = '{checkedurlfalse}';
+		}
+	}
+</script>

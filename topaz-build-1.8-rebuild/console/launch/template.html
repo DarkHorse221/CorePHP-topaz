@@ -1,0 +1,164 @@
+<style type="text/css">
+  #launch-lt {
+    float: left;
+    width: 650px;
+    margin-top: 20px;
+  }
+  #launch-lt img {
+    float: left;
+    width: 146px;
+    height: 146px;
+    margin: 0px 10px 10px 0px;
+    border: none;
+  }
+  #launch-rt {
+    float: left;
+    width: auto;
+    margin: 20px 0px 0px 20px;
+  }
+</style>
+<div id="launch-lt">
+  {launch}
+</div>
+<div id="launch-rt">
+  <p class="header">Logged in Users</p>
+  <div class="errors">{error}{success}</div>
+  {pagination}
+  <p>{logged-users}</p>
+</div>
+<div class="clear"></div>
+
+<p class="header">RapidLook Charts</p>
+<div style="float: left;">
+  <div id="chart" style="width: 400px; height: 300px;"></div>
+</div>
+<div style="float: left;">
+  <div id="userlogin" style="width: 400px; height: 300px;"></div>
+</div>
+<div style="float: left;">
+  <div id="documenttypes" style="width: 400px; height: 300px;"></div>
+</div>
+<div class="clear">&nbsp;</div>
+
+<script type="text/javascript">
+  var dom = document.getElementById("chart");
+  var myChart = echarts.init(dom);
+  var app = {};
+  option = null;
+  option = {
+  	title: {
+              text: 'Documents Implemented in the last 7 days',
+  			textStyle: {
+  					fontSize: 14,
+  					color: '#666',
+  				},
+              },
+  	color: ['#42b9f4'],
+      xAxis: {
+          type: 'category',
+          data: [{days-list}]
+      },
+      yAxis: {
+          type: 'value'
+      },
+      series: [{
+          data: [{days-list-data}],
+          type: 'bar'
+      }]
+  };
+  ;
+  if (option && typeof option === "object") {
+      myChart.setOption(option, true);
+  }
+
+  var dom1 = document.getElementById("userlogin");
+  var myChart1 = echarts.init(dom1);
+  var app = {};
+  option = null;
+  option = {
+  	title: {
+              text: 'User Logins last 7 days',
+  			textStyle: {
+  					fontSize: 14,
+  					color: '#666',
+  				},
+              },
+  	color: ['#f4a442'],
+      xAxis: {
+          type: 'category',
+          data: [{days-user-list}]
+      },
+      yAxis: {
+          type: 'value'
+      },
+      series: [{
+          data: [{days-user-data}],
+          type: 'line'
+      }]
+  };
+
+  if (option && typeof option === "object") {
+      myChart1.setOption(option, true);
+  }
+
+
+
+  var dom2 = document.getElementById("documenttypes");
+  var myChart2 = echarts.init(dom2);
+  var app = {};
+  option = null;
+  option = {
+
+  	title: {
+  		text: 'Documents by type ({doctype-count})',
+  		textStyle: {
+  				fontSize: 14,
+  				color: '#666',
+  			},
+  		},
+  	color: ['#b5cdcd','#7da0a9','#0b7895','#135998','#1483c7','#4d9fdd','#91e1f2','#58c3c0'],
+  	tooltip: {
+          trigger: 'item',
+          formatter: "{a} <br/>{b}: {c} ({d}%)"
+      },
+      legend: {
+          orient: 'vertical',
+          x: 'left',
+  		y: 30,
+          data:[{doctype-legend}]
+      },
+      series: [
+          {
+              name:'Document Types',
+              type:'pie',
+              radius: ['0%', '60%'],
+              avoidLabelOverlap: false,
+              label: {
+                  normal: {
+                      show: false,
+                      position: 'center'
+                  },
+                  emphasis: {
+                      show: false,
+                      textStyle: {
+                          fontSize: '30',
+                          fontWeight: 'bold'
+                      }
+                  }
+              },
+              labelLine: {
+                  normal: {
+                      show: false
+                  }
+              },
+              data:[
+  				{doctype-data}
+              ]
+          }
+      ]
+  };
+
+  if (option && typeof option === "object") {
+      myChart2.setOption(option, true);
+  }
+</script>

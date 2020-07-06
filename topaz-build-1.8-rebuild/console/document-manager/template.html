@@ -1,0 +1,81 @@
+<style type="text/css">
+#group-lt { float: left; width: auto; } #group-rt { float: left; width: auto; margin: 0px 0px 0px 40px; }
+.std-grp { width: auto; display: table-cell; padding: 5px 20px 5px 5px; }
+.shadow { border: 1px solid #999; background: #C0E7FA }
+#slidingDiv{ height:300px; background-color: #FFF; padding: 20px; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px; border: 1px solid #CCC; }
+</style>
+<div id="profile"><div class="profile_header">{sect_head}{sect_head_ext}</div>{sect_head_rt}</div>
+<div id="breadcrumb">{section_nav}</div>
+<div class="errors">{success}</div>
+{error}{warning}{info}
+<div id="profile-content" style="display: {system-rights}; overflow:hidden;">
+
+<div style="display: {documents}">
+<label class="switch" style="display: {documents}">
+	<p class="switch-text">Show Active / All</p>
+	<input type="checkbox" id="activetoggle" onclick="updatePreference(this);" {checked}>
+	<span class="slider"></span>
+</label>
+{pagination}
+{doc_tree}
+</div>
+<div id="group-lt" style="display: {add-documents}">
+{fhead-doc}
+<p class="header">Enter in the following details to add a document</p><br />
+<p>{name}</p>
+<p>{doc-link}</p>
+<p>{doc_no}{doc_no_h}</p>
+<p>{author}</p>
+<p>{reviewer}</p>
+<p>{approver}</p>
+<p>{doc_type}</p>
+<p>{pdf}</p>
+<p style="clear:left;">{doc}</p>
+<p>{version}{version_h}</p>
+<p><label class="label">Implement Date</label><input type="text" id="date-imp" name="date-imp" value="{date-imp}" class="date" /></p>
+<p><label class="label">Revision Date</label><input type="text" id="date-rev" name="date-rev" value="{date-rev}" class="date" /></p>
+<p><label class="label">No Revision Date</label>{no_rev_date}</p>
+<p>{unit}</p>
+<p>{act}</p>
+<p>{submit-doc}</p>
+
+</div>
+<div id="group-rt" style="display: {add-documents}">
+<p class="header">Accreditation Standards <a href="{website_loc}_uploads/files/NSQHS-Standards-Sept-2012.pdf" target="_blank">(help)</a></p>
+<div id="slidingDiv">{standards}</div>
+<br /><br />
+<p class="header">Document Notifications</p><br />
+{notification}
+{fend-doc}
+</div>
+<div class="clear"></div>
+
+<div style="display: {add-folder}">
+{fhead-folder}
+<p class="header">Enter in the following details to add a folder</p><br />
+<p>{name}</p>
+<p>{doc-link}</p>
+<p>{doc_no}{doc_no_h}</p>
+<p>{fold_type}</p>
+<p>{version}{version_h}</p>
+<p>{unit}</p>
+<p>{act}</p>
+<p>{submit-folder}</p>
+{fend-folder}
+</div>
+
+</div>
+<script type="text/javascript">
+	$(function() {
+		$("#date-imp").datepicker({ dateFormat: 'yy-mm-dd',	defaultDate: "{date-imp}", showButtonPanel: true });
+		$("#date-rev").datepicker({ dateFormat: 'yy-mm-dd',	defaultDate: "{date-rev}", showButtonPanel: true });
+	});
+	function updatePreference(cb) {
+			if (cb.checked) {
+				window.location.href = '{checkedurl}';
+			} else {
+				
+				window.location.href = '{checkedurlfalse}';
+			}
+		}
+</script>

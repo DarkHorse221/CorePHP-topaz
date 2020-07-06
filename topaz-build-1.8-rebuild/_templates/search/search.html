@@ -1,0 +1,30 @@
+<style type="text/css">
+#search-box input { background:#DAF3A0; }
+</style>
+<h1>Search Documents</h1>
+<div id="search-box">
+<form id="search" method="post" action="" >
+<p>Enter your search text below.</p><p><input type="text" id="searchtext" name="searchtxt" onkeyup="lookup(this.value);"></p>
+</form> 
+</div>
+<div id="search-results"></div>
+<script>
+	
+jQuery(document).ready(function($) {
+    htmlData = $('#searchtext').val();
+    if(htmlData) {
+        lookup(htmlData);
+    }
+});
+
+function lookup(inputString) {
+	if(inputString.length == 0) {
+	} else {
+		$.post("{website_loc}_functions/process-search.php", {queryString: ""+inputString+""}, function(data){
+			if(data.length >0) {
+				$('#search-results').html(data);
+			}
+		});
+	}
+} // lookup
+</script>

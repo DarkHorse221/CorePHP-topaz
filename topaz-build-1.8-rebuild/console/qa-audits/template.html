@@ -1,0 +1,361 @@
+<style type="text/css">
+  .clear {
+    clear: both;
+    display: block;
+  }
+  .content {
+    width: 1200px;
+    margin: 10px auto 10px auto;
+    line-height: 170%;
+    padding-bottom: 15px;
+  }
+  .row,
+  .row-alt {
+    border: 1px solid #ccc;
+    background: #e6f9ff;
+    width: 800px;
+    padding: 20px 10px 0px 10px;
+    margin-bottom: 10px;
+  }
+  input[type="text"],
+  input[type="select"],
+  select {
+    padding: 4px;
+    margin-bottom: 2px;
+  }
+  /*input[type^=ra]input[type$=io]input[type*=d]*/
+  .btn,
+  .btn_add {
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #000;
+    padding-top: 5px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin: 0 1px;
+  }
+  .btn_add {
+    color: #000;
+    background-color: #aedd27;
+    border: 1px solid #84a71b;
+  }
+  input.btn:hover,
+  .btn_add:hover {
+    cursor: pointer;
+  }
+  .btn:hover {
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+  }
+  a.btn {
+    color: #fff;
+  }
+  a.btn:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+  .text_black_bold,
+  .text_correct {
+    color: #666;
+    font-size: 12px;
+    font-weight: bold;
+    width: 400px;
+    display: block;
+    float: left;
+  }
+  .text_correct {
+    width: 100px;
+  }
+  #divTxt {
+    display: block;
+    width: auto;
+    overflow: hidden;
+  }
+  #divTxt label {
+    /*width: auto;*/
+    width: 80px;
+    font-weight: bold;
+    padding-top: 6px;
+    font-size: 12px;
+  }
+  #divTxt input {
+    width: 370px;
+  }
+  #divTxt input.chk {
+    width: 20px;
+    margin-left: 15px;
+  }
+  .col_label,
+  .col_input_type,
+  .col_input_name,
+  .col_reqd {
+    float: left;
+    width: 400px;
+    color: red; /*border: 1px solid red;*/
+    margin: 0px 5px 10px 0px;
+  }
+  .col_input_type {
+    width: 150px;
+  }
+  .col_reqd {
+    width: 100px;
+  }
+  .col_process {
+    float: left;
+    width: 100px;
+  }
+  .col_remove {
+    float: left;
+    width: 20px;
+    padding-top: 5px;
+  }
+  .col_spacer {
+    float: left;
+    width: 56px;
+  }
+  .col_extra_values,
+  .col_extra_values_dropdown {
+    float: left;
+    width: 600px;
+    margin: 0px 0px 20px 80px;
+  }
+  .clear_inputs {
+    clear: both;
+    display: block;
+    height: 5px;
+    width: 100%;
+  }
+  label.error {
+    float: none;
+    color: red;
+    padding-left: 0.5em;
+    vertical-align: top;
+  }
+  input.error,
+  select.error,
+  textarea.error {
+    border: 2px solid red;
+  }
+  .validate_checkbox_oneormore {
+    /*width: 200px;*/
+    float: left;
+  }
+  .error_checkbox {
+    color: red;
+    padding-left: 0.5em;
+    border: 2px solid red;
+  }
+  #divTxt_header span.q,
+  #divTxt_header span.lbl,
+  #divTxt_header span.q_typ,
+  #divTxt_header span.q_reqd {
+    display: inline-table;
+    width: 80px;
+    padding: 4px;
+    font-weight: bold;
+  }
+  #divTxt_header span.lbl {
+    width: 365px;
+  }
+  #divTxt_header span.q_req {
+    width: 100px;
+    margin-left: 25px;
+  }
+  #divTxt_header span.q_typ {
+    width: 150px;
+    margin-left: 30px;
+  }
+
+  .audit-row {
+    background: #e6f7ff;
+    clear: both;
+  }
+  .audit-row-alt {
+    background: none;
+    clear: both;
+  }
+  .answer,
+  .question {
+    line-height: 30px;
+    height: 30px;
+    font-size: 0.9em;
+  }
+  .answer {
+    float: right;
+    text-align: left;
+    
+  }
+  .radio {
+    width: 65px;
+    display: inline-table;
+  }
+  .ui-state-highlight {
+    height: 60px;
+    margin-bottom: 10px;
+  }
+  #group-lt {
+    float: left;
+    width: auto;
+  }
+  #group-rt {
+    float: left;
+    width: auto;
+    margin: 0px 0px 0px 40px;
+  }
+  .std-grp {
+    width: auto;
+    display: table-cell;
+    padding: 5px 20px 5px 5px;
+  }
+</style>
+
+<div id="profile">
+  <div class="profile_header">Audit Manager{sect_head_ext}</div>
+  {sect_head_rt}
+</div>
+<div id="section">{section_nav}</div>
+<div class="errors">{success}</div>
+{warning}{error}
+<div id="profile-content" style="display: {system-rights}">
+  <div style="display: {qa-records}">
+    {pagination}
+    <p>{qa_report_data}</p>
+  </div>
+  <div style="display: {qa-checklist}">
+	
+	<label class="switch" style="display: {qa-checklist}">
+		<p class="switch-text">Show Active / All</p>
+		<input type="checkbox" id="activetoggle" onclick="updatePreference(this);" {checked}>
+		<span class="slider"></span>
+	</label>
+	{pagination}
+    <p>{qa_checklist_data}</p>
+  </div>
+  <div style="display: {add-qa-checklist}">
+    {fhead-chk-add}
+    <p>{chk-add-name}</p>
+    <p>{chk-add-type}</p>
+    <p>{chk-add-unit}</p>
+    <p>{submit-chk-add}</p>
+    {fend-chk-add}
+  </div>
+  <div style="display: {edit-qa-checklist}">
+    {fhead-chk-edit}
+    <div id="group-lt">
+      <p>{chk-edit-name}</p>
+      <p>{chk-edit-type}</p>
+      <p>{chk-edit-unit}</p>
+      <p>{chk-edit-version}{chk-edit-vers}</p>
+      <p>{chk-edit-status-pub}{chk-edit-pubs}</p>
+      <p>{chk-edit-status-act}</p><br />
+      <p class="header">Select Locations applicable for Audit</p>
+      {locations}
+      <p>{submit-chk-edit-settings}</p>
+    </div>
+    <div id="group-rt">
+      
+      <p class="header">Groups who receive notifications (<a href="{url}">Modify</a>)</p><br />
+      <p>{notification-groups}</p><br />
+      <p class="header">Individuals who receive notifications</p><br />
+      <p>{individual-list} <input type="button" onclick="addUser();" value="Add" class="submit"></p>
+      <p>{notification-individuals}</p>
+    </div>
+    <div class="clear" style="width: 1150px;">&nbsp;</div>
+    <p class="header">Build Audit</p>
+    <p>{submit-add-fields} {submit-chk-edit}</p>
+    <div id="divTxt_header">
+      <span class="q">Question</span><span class="lbl">Label</span
+      ><span class="q_typ">Question Type</span
+      ><span class="q_reqd">Required</span>
+    </div>
+    <div id="divTxt">{qlist}</div>
+    <br />
+
+    <p>
+      {submit-add-fields} {submit-chk-edit} {curr_ver_id}<input
+        name="input_counter"
+        type="hidden"
+        id="input_counter"
+        value="{initial_count}"
+      />
+    </p>
+
+    {fend-chk-edit}
+  </div>
+  <div style="display: {qa-checklist-history}">
+    {qa_history}
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#machines").tablesorter({ headers: { 4: { sorter: false } } });
+    $("#qa-forms").tablesorter({ headers: { 2: { sorter: false } } });
+    $("#qa-records").tablesorter();
+    $("#qa-forms-details").tablesorter();
+  });
+</script>
+<script type="text/javascript">
+  var INITIAL_COUNT = "{initial_count}";
+</script>
+<script
+  type="text/javascript"
+  src="{website_loc}console/_scripts/form_functions_qa_audits.js"
+></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".input_type").live("change", function () {
+      this_textual_id = $(this).attr("id");
+      var only_id = this_textual_id.replace("input_type", "");
+    });
+
+    $("#sbt_add").click(function () {
+      var current_inputs_count = $("#input_counter").val();
+      if (0 == current_inputs_count || "" == current_inputs_count) {
+        var new_inputs_count = 1;
+        $("#input_counter").val(new_inputs_count);
+      } else {
+        var new_inputs_count = parseFloat(current_inputs_count) + 1;
+        $("#input_counter").val(new_inputs_count);
+      }
+    });
+  });
+
+  $(function () {
+    $("#divTxt").sortable({
+      placeholder: "ui-state-highlight",
+      connectWith: "#divTxt",
+      start: function (event, ui) {
+        $("#divTxt").sortable("refresh");
+      },
+      update: function (event, ui) {
+        var order = $("#divTxt").sortable("serialize");
+        $(".errors").load("../_functions/process-qa-audit.php?" + order);
+      },
+    });
+  });
+
+  function updatePreference(cb) {
+		if (cb.checked) {
+			window.location.href = '{checkedurl}';
+		} else {
+			
+			window.location.href = '{checkedurlfalse}';
+		}
+  }
+  
+  function addUser() {
+		var e = document.getElementById("individual_list");
+		var result = e.options[e.selectedIndex].value;
+		window.location.href = '{addurl}' + '&addun=' + result;
+	}
+</script>
